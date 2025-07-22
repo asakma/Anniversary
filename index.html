@@ -110,14 +110,28 @@
     </div>
 
     <!-- JavaScript for Music & Popup -->
-    <script>
-  window.onload = function () {
-    const musicWindow = window.open("music.html", "musicPlayer", "width=1,height=1");
-    if (!musicWindow) {
-      alert("Please allow popups to play background music.");
-    }
-  };
+   <audio id="bgSong" autoplay muted loop>
+  <source src="song.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<button id="playBtn" style="padding: 10px 20px; font-size: 18px;">Start the Love ❤️</button>
+
+<script>
+  const bgSong = document.getElementById('bgSong');
+  const playBtn = document.getElementById('playBtn');
+
+  playBtn.addEventListener('click', function () {
+    bgSong.muted = false;
+    bgSong.volume = 0.6;
+    bgSong.play().then(() => {
+      playBtn.style.display = "none"; // hide button after play
+    }).catch((err) => {
+      console.log("Playback failed:", err);
+    });
+  });
 </script>
+
 
 
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
